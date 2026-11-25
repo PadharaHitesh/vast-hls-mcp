@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vast-hls-mcp"
+version = "0.1.0"
+description = "MCP server that lets AI assistants debug video ad delivery: VAST tags, HLS streams and SCTE-35 ad breaks."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [{ name = "Hitesh Padhara" }]
+keywords = ["mcp", "vast", "hls", "scte-35", "ssai", "adtech", "ott", "ctv", "llm"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Multimedia :: Video",
+  "Intended Audience :: Developers",
+]
+dependencies = [
+  "mcp>=2.0,<3",
+  "httpx>=0.27",
+  "defusedxml>=0.7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+vast-hls-mcp = "vast_hls_mcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/PadharaHitesh/vast-hls-mcp"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vast_hls_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
