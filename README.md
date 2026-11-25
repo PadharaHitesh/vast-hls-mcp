@@ -5,6 +5,8 @@
 ![MCP](https://img.shields.io/badge/MCP-server-8A2BE2)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+**[▶ Try it in your browser](https://padharahitesh.github.io/vast-hls-mcp/)**: decode SCTE-35 cues, find HLS ad breaks and validate VAST with nothing to install. The page runs this repo's actual Python package via WebAssembly.
+
 **An MCP server that lets AI assistants debug video ad delivery.** It validates VAST ad tags, follows wrapper chains, inspects HLS streams and finds and decodes SCTE-35 ad breaks.
 
 Connect it to Claude, Cursor or any other [Model Context Protocol](https://modelcontextprotocol.io) client and ask questions like these:
@@ -109,10 +111,21 @@ Design decisions:
   For local testing, set `VAST_HLS_MCP_ALLOW_PRIVATE=1`.
 - **Errors are structured, not raised.** Tools return `{"ok": false, "error": ...}`, so the assistant can explain the failure instead of the call crashing.
 
+## Browser demo
+
+[`site/`](site/) is a static page that runs the parsers in the browser through [Pyodide](https://pyodide.org), Python compiled to WebAssembly. It uses the same `vast_hls_mcp` package, loaded through [`demo.py`](src/vast_hls_mcp/demo.py).
+- There's no backend, and nothing the user pastes leaves the browser.
+- `.github/workflows/pages.yml` deploys it to GitHub Pages on every push.
+- Browsers block cross-site requests (CORS), so URL fetching and `unwrap_vast` only work in the MCP server.
+
+```bash
+./scripts/build_site.sh && python -m http.server -d _site 8000   # preview at http://localhost:8000
+```
+
 ## Development
 
 ```bash
-pytest -q                       # 59 tests
+pytest -q                       # 68 tests
 ruff check . && ruff format --check .
 python scripts/smoke_test.py    # end-to-end over stdio, like a real MCP client
 ```
