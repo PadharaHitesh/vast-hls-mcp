@@ -1,0 +1,17 @@
+<VAST version="4.1">
+  <Ad id="bad-1">
+    <InLine>
+      <AdTitle>Broken creative</AdTitle>
+      <Creatives>
+        <Creative id="cr-9">
+          <Linear>
+            <Duration>30</Duration>
+            <MediaFiles>
+              <MediaFile type="video/webm"><![CDATA[http://cdn.example.com/ad.webm]]></MediaFile>
+            </MediaFiles>
+          </Linear>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+</VAST>

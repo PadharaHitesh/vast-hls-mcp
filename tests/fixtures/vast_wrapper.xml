@@ -1,0 +1,18 @@
+<VAST version="3.0">
+  <Ad id="wrap-1">
+    <Wrapper followAdditionalWrappers="true">
+      <AdSystem>ExampleSSP</AdSystem>
+      <VASTAdTagURI><![CDATA[https://dsp.example.com/vast?id=77]]></VASTAdTagURI>
+      <Impression><![CDATA[https://ssp.example.com/imp?id=77]]></Impression>
+      <Creatives>
+        <Creative>
+          <Linear>
+            <TrackingEvents>
+              <Tracking event="start"><![CDATA[https://ssp.example.com/t?e=start]]></Tracking>
+            </TrackingEvents>
+          </Linear>
+        </Creative>
+      </Creatives>
+    </Wrapper>
+  </Ad>
+</VAST>
