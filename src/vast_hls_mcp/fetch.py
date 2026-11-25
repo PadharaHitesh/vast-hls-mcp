@@ -13,9 +13,11 @@ import os
 import socket
 import time
 from dataclasses import dataclass, field
+from typing import TYPE_CHECKING
 from urllib.parse import urljoin, urlparse
 
-import httpx
+if TYPE_CHECKING:  # httpx is imported lazily so the parsers also run in Pyodide.
+    import httpx
 
 MAX_BYTES = 2 * 1024 * 1024
 TIMEOUT_SECONDS = 10.0
@@ -70,6 +72,8 @@ def _check_host(url: str) -> None:
 
 def fetch_text(url: str, *, client: httpx.Client | None = None) -> FetchResult:
     """GET a URL with SSRF checks on every hop, a size cap and a timeout."""
+    import httpx
+
     own_client = client is None
     client = client or httpx.Client(
         timeout=TIMEOUT_SECONDS,
