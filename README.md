@@ -82,6 +82,14 @@ claude mcp add vast-hls-mcp -- /path/to/vast-hls-mcp/.venv/bin/vast-hls-mcp
 }
 ```
 
+### Agent skill
+
+[`skills/vast-hls-mcp/SKILL.md`](skills/vast-hls-mcp/SKILL.md) is an [Agent Skill](https://agentskills.io) that tells an AI agent when to use each tool, how to chain them (master playlist → variant → ad breaks; tag → wrapper chain), and how to turn each finding into a fix. In Claude Code, copy the folder to `~/.claude/skills/` alongside the MCP server:
+
+```bash
+cp -r skills/vast-hls-mcp ~/.claude/skills/
+```
+
 ## Architecture
 
 ```mermaid
