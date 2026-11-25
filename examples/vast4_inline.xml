@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VAST version="4.2" xmlns="http://www.iab.com/VAST">
+  <Ad id="ad-1001" sequence="1">
+    <InLine>
+      <AdSystem version="1.0">ExampleAdServer</AdSystem>
+      <AdServingId>a532d16d-4d7f-4440-bd29-2ec05553fc80</AdServingId>
+      <AdTitle>Spring Sale 30s</AdTitle>
+      <Impression id="imp-1"><![CDATA[https://ads.example.com/imp?id=1001]]></Impression>
+      <Error><![CDATA[https://ads.example.com/err?code=[ERRORCODE]]]></Error>
+      <Creatives>
+        <Creative id="cr-1" adId="ad-1001">
+          <UniversalAdId idRegistry="ad-id.org">ABCD1234000H</UniversalAdId>
+          <Linear skipoffset="00:00:05">
+            <Duration>00:00:30.000</Duration>
+            <TrackingEvents>
+              <Tracking event="start"><![CDATA[https://ads.example.com/t?e=start]]></Tracking>
+              <Tracking event="firstQuartile"><![CDATA[https://ads.example.com/t?e=q1]]></Tracking>
+              <Tracking event="midpoint"><![CDATA[https://ads.example.com/t?e=mid]]></Tracking>
+              <Tracking event="thirdQuartile"><![CDATA[https://ads.example.com/t?e=q3]]></Tracking>
+              <Tracking event="complete"><![CDATA[https://ads.example.com/t?e=complete]]></Tracking>
+            </TrackingEvents>
+            <VideoClicks>
+              <ClickThrough><![CDATA[https://brand.example.com/sale]]></ClickThrough>
+            </VideoClicks>
+            <MediaFiles>
+              <Mezzanine delivery="progressive" type="video/mp4" width="1920" height="1080"><![CDATA[https://cdn.example.com/mezz/spring.mp4]]></Mezzanine>
+              <MediaFile delivery="progressive" type="video/mp4" width="1920" height="1080" bitrate="4500" codec="H.264"><![CDATA[https://cdn.example.com/spring_1080.mp4]]></MediaFile>
+              <MediaFile delivery="streaming" type="application/x-mpegURL" width="1280" height="720"><![CDATA[https://cdn.example.com/spring/master.m3u8]]></MediaFile>
+            </MediaFiles>
+          </Linear>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+</VAST>
