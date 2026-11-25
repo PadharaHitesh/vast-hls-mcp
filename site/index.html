@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>vast-hls-mcp · Try it in your browser</title>
+  <meta name="description" content="Decode SCTE-35 cues, find HLS ad breaks, inspect playlists and validate VAST ad tags — in your browser. Demo of an MCP server for AI-assisted video ad debugging.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232457d6'/%3E%3Cpath d='M12 9l11 7-11 7z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <p class="eyebrow">Open-source MCP server · Video ad tech</p>
+      <h1>vast-hls-mcp</h1>
+      <p class="lede">Debug video ad delivery: decode <strong>SCTE-35</strong> cues, find <strong>HLS ad breaks</strong>, inspect playlists and validate <strong>VAST</strong> ad tags. The same tools AI assistants like Claude call through the Model Context Protocol, running here directly in your browser.</p>
+      <ul class="facts">
+        <li>Runs 100% in your browser: nothing you paste is uploaded</li>
+        <li>The real, tested Python package via WebAssembly (Pyodide)</li>
+      </ul>
+      <nav class="links">
+        <a class="btn btn-primary" href="https://github.com/PadharaHitesh/vast-hls-mcp">View on GitHub</a>
+        <a class="btn" href="#use-with-claude">Use it with Claude</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="tool-card" aria-label="Interactive demo">
+      <div class="tabs" role="tablist" id="tabs"></div>
+
+      <div class="panel">
+        <p class="tool-desc" id="tool-desc"></p>
+        <div class="input-head">
+          <label for="input" id="input-label">Input</label>
+          <div class="examples" id="examples" aria-label="Load an example"></div>
+        </div>
+        <textarea id="input" spellcheck="false" autocomplete="off" rows="12"></textarea>
+        <div class="actions">
+          <button class="btn btn-primary" id="run" disabled>Loading Python…</button>
+          <span class="hint"><kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd> to run</span>
+          <span class="loader" id="loader" role="status" aria-live="polite">Starting Python in your browser (first load takes a few seconds)…</span>
+        </div>
+      </div>
+
+      <div class="results" id="results" aria-live="polite" hidden></div>
+    </section>
+
+    <section class="explain" id="use-with-claude">
+      <h2>Use it with Claude or any MCP client</h2>
+      <p>In an AI assistant you just ask: <em>“Why isn’t this ad tag filling?”</em> or <em>“Check the ad breaks in this stream.”</em> The assistant picks the right tool, reads the structured result and explains it. The MCP server also fetches URLs (with SSRF protection) and follows VAST wrapper chains with <code>unwrap_vast</code>, which a browser can’t do because of cross-site (CORS) rules.</p>
+      <pre><code>git clone https://github.com/PadharaHitesh/vast-hls-mcp.git
+cd vast-hls-mcp && python -m venv .venv && source .venv/bin/activate
+pip install -e .
+claude mcp add vast-hls-mcp -- "$PWD/.venv/bin/vast-hls-mcp"</code></pre>
+    </section>
+  </main>
+
+  <footer class="wrap site-footer">
+    <p>Built by <a href="https://github.com/PadharaHitesh">Hitesh Padhara</a>, backend engineer in video ad tech &amp; OTT. MIT licensed.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.28.3/full/pyodide.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
